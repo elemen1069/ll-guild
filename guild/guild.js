@@ -1,5 +1,7 @@
 import { all } from "./plugins/lang.js";
 
+
+// setting Plz
 var language = 1; // 0 : english , 1 : korean 
 
 if (language == 1) {
@@ -32,8 +34,8 @@ logger.info(`
 
 
 
-
-function checkguild(guild) {
+// Bring information to the people in the guild
+function infoguild(guild) {
     const result = {
         "master": guild.master || l.none,
         "submaster": guild.submaster.length > 0 ? guild.submaster : l.none,
@@ -45,6 +47,7 @@ function checkguild(guild) {
     return result;
 }
 
+// Enter the player's name and guild to return 0 or 1 or 2 or 3
 function getrank(guildData, playerName) {
     for (const key in guildData) {
         const guild = guildData[key];
@@ -59,6 +62,7 @@ function getrank(guildData, playerName) {
     return 0;
 }
 
+// If you put in the player's name and guild, you bring the player's rank
 function playername(obj, playerName) {
     for (var key in obj) {
         if (
@@ -340,7 +344,7 @@ function kick(player) {
 function info(player) {
     var json = JSON.parse(File.readFrom("./plugins/db/guild.json"));
     var my = playername(json, player.realName);
-    var guild = checkguild(json[my]);
+    var guild = infoguild(json[my]);
     var txt = `[ ${my} ] ${l.guildinfo}\n${l.infomaster} : ${guild.master}\n\n${l.infosubmaster} : ${guild.submaster}\n\n${l.infomember} : ${guild.member}\n\n${l.infodescript} : ${guild.descript}\n\n${l.infojoinlist} : ${guild.wait}`;
     var ui = mc.newSimpleForm();
     ui.setTitle(my + l.guildinfo);
