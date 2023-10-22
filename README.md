@@ -1,4 +1,4 @@
-# llpv-plugin
+# llguild-plugin
 liteloader PVP plugin
 
 -- Made by Elemen --
